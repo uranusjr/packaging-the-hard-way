@@ -50,7 +50,7 @@ Prepare the demo project to distribute
 
 .. code-block:: console
 
-    $ cd /path/to/my-project
+    $ cd /path/to/example-project
     $ py
     >>> import my_package
     >>> my_package.hello()
@@ -99,3 +99,73 @@ We can correctly import the package once it's copied into the environment:
     $ cd /path/to/other-project
     $ py main.py
     Greetings from my package!
+
+
+Describe the installation
+=========================
+
+The import system is easy to satisfy, but the approach has problems.
+
+* Can't upgrade (there is not version!)
+* Need manual intervention to be installed/uninstalled
+
+To automate the process, we need to provide *metadata* for tools (e.g. pip) to
+recognise the package.
+
+`PEP 376`_ --- Database of Installed Python Distributions
+---------------------------------------------------------
+
+* A `{name}-{version}.dist-info` directory to describe an installation.
+* `METADATA` describes the installed distribution, so tools can recognise them.
+* `RECORD` records installed files, so tools can uninstall them later.
+* `INSTALLER` identifies what tool was used to install the distribution, so
+  tools don't step on each others' files.
+
+.. _`PEP 376`: https://www.python.org/dev/peps/pep-0376/
+
+Let's write some code to automate the process.
+
+.. literalinclude:: /../home-grown-packager/direct-install.py
+    :caption: direct-install.py
+    :language: python
+
+Now if we install our package with this script:
+
+.. code-block:: console
+
+    $ py direct-install.py /path/to/example-project /path/to/site-packages
+
+pip would magically recognise our package!
+
+.. code-block:: console
+
+    $ py -m pip list
+    Package    Version
+    ---------- -------
+    my-package 0
+    pip        20.2.1
+    setuptools 46.0.0
+    wheel      0.34.2
+
+.. code-block:: console
+
+    $ py -m pip show my-package
+    Name: my-package
+    Version: 0
+    Summary: None
+    Home-page: None
+    Author: None
+    Author-email: None
+    License: None
+    Location: /path/to/site-packages
+    Requires:
+    Required-by:
+
+Note how pip shows our example as ``my-package``, although we defined
+``DIST_NAME`` as ``my_package``. The two are actually equivalent according to
+`PEP 503`_, and the dash form is called the "normalised" name form. In
+practice, you should be able to refer your project anyhow you like---just
+remember that pip will conflate the different notation.
+
+.. _`PEP 503`: https://www.python.org/dev/peps/pep-0503/
+
