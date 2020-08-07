@@ -4,8 +4,8 @@ Describe a Python Package
 
 The import system is easy to satisfy, but the approach has problems.
 
-* Can't upgrade (there is not version!)
-* Need manual intervention to be installed/uninstalled
+* Can't upgrade (there is no version!)
+* Manual intervention needed to install/uninstall
 
 To automate the process, we need to provide *metadata* for tools (e.g. pip) to
 recognise the package. This is specified in `PEP 376`_.
