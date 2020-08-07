@@ -115,25 +115,26 @@ recognise the package.
 `PEP 376`_ --- Database of Installed Python Distributions
 ---------------------------------------------------------
 
-* A `{name}-{version}.dist-info` directory to describe an installation.
-* `METADATA` describes the installed distribution, so tools can recognise them.
-* `RECORD` records installed files, so tools can uninstall them later.
-* `INSTALLER` identifies what tool was used to install the distribution, so
+* A ``{name}-{version}.dist-info`` directory to describe an installation.
+* ``METADATA`` describes the installed distribution for tools to recognise.
+* ``RECORD`` records installed files, so tools can uninstall them later. Note
+  that we always use ``/`` in paths.
+* ``INSTALLER`` identifies what tool was used to install the distribution, so
   tools don't step on each others' files.
 
 .. _`PEP 376`: https://www.python.org/dev/peps/pep-0376/
 
 Let's write some code to automate the process.
 
-.. literalinclude:: /../home-grown-packager/direct-install.py
-    :caption: direct-install.py
+.. literalinclude:: /../home-grown-packager/distinfo.py
+    :caption: distinfo.py
     :language: python
 
 Now if we install our package with this script:
 
 .. code-block:: console
 
-    $ py direct-install.py /path/to/example-project /path/to/site-packages
+    $ py distinfo.py /path/to/example-project /path/to/site-packages
 
 pip would magically recognise our package!
 
