@@ -13,8 +13,10 @@ package from the ground up. Because Python packages are not hard, I promise!
    :caption: Contents:
 
    packaging
-   distribution
+   distinfo
+   wheel
    pep517
+   conclusion
 
 
 ==================
