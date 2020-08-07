@@ -38,7 +38,7 @@ Let's try that!
 Prepare the demo project to distribute
 --------------------------------------
 
-::
+.. code-block:: none
 
     example-project/
         my_package/
@@ -60,7 +60,7 @@ Prepare the demo project to distribute
 Use ``my_package`` in another project
 -------------------------------------
 
-::
+.. code-block:: none
 
     other-project/
         main.py
@@ -71,9 +71,7 @@ Use ``my_package`` in another project
     import my_package
     my_package.hello()
 
-Now try running ``main.py``:
-
-.. code-block:: console
+Now try running ``main.py``::
 
     $ cd /path/to/other-project
     $ py main.py
@@ -92,9 +90,7 @@ Generally, third-party packages (i.e. packages that are not a part of the
 standard library, and does not belong specifically to a project) are copied
 into the ``site-packages`` directory.
 
-We can correctly import the package once it's copied into the environment:
-
-.. code-block:: console
+We can correctly import the package once it's copied into the environment::
 
     $ cd /path/to/other-project
     $ py main.py
@@ -110,10 +106,9 @@ The import system is easy to satisfy, but the approach has problems.
 * Need manual intervention to be installed/uninstalled
 
 To automate the process, we need to provide *metadata* for tools (e.g. pip) to
-recognise the package.
+recognise the package. This is specified in `PEP 376`_.
 
-`PEP 376`_ --- Database of Installed Python Distributions
----------------------------------------------------------
+.. _`PEP 376`: https://www.python.org/dev/peps/pep-0376/
 
 * A ``{name}-{version}.dist-info`` directory to describe an installation.
 * ``METADATA`` describes the installed distribution for tools to recognise.
@@ -122,19 +117,15 @@ recognise the package.
 * ``INSTALLER`` identifies what tool was used to install the distribution, so
   tools don't step on each others' files.
 
-.. _`PEP 376`: https://www.python.org/dev/peps/pep-0376/
-
 Let's write some code to automate the process.
 
-.. literalinclude:: /../home-grown-packager/distinfo.py
-    :caption: distinfo.py
+.. literalinclude:: /../example-project/packager/distinfo.py
+    :caption: packager/distinfo.py
     :language: python
 
-Now if we install our package with this script:
+Now if we install our package with this script::
 
-.. code-block:: console
-
-    $ py distinfo.py /path/to/example-project /path/to/site-packages
+    $ py -m packager.distinfo ./my_package /path/to/site-packages
 
 pip would magically recognise our package!
 

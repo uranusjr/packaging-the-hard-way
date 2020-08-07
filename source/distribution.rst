@@ -15,9 +15,33 @@ to do this.
 
 .. _`PEP 427`: https://www.python.org/dev/peps/pep-0427/
 
-.. literalinclude:: /../home-grown-packager/wheel.py
-    :caption: wheel.py
+.. literalinclude:: /../example-project/packager/wheel.py
+    :caption: packager/wheel.py
     :language: python
+
+Now we can build our wheel by calling
+
+.. code-block:: console
+
+    $ py -m packager.wheel ./my_package /path/to/save/the/wheel
+
+And use pip to install the wheel::
+
+    $ py -m pip install /path/to/save/the/wheel/my_package-1-py3-none-any.whl
+
+which can be correctly recognised (notice the version changed from 0 to 1)::
+
+    $ py -m pip show my-package
+    Name: my-package
+    Version: 1
+    Summary: None
+    Home-page: None
+    Author: None
+    Author-email: None
+    License: None
+    Location: /path/to/site-packages
+    Requires:
+    Required-by:
 
 
 Anatomy of a wheel
@@ -51,6 +75,8 @@ the PEP for more information if you're into these stuff.
   pure-Python packages, this is always ``py3-none-any`` (or ``py2-`` if it's
   for Python 2), indicating the major Python version, ABI, and platform
   information.
+
+# TODO: The `.dist-info` directory is placed last intentionally.
 
 The wheel named as ``{name}-{version}-{tag}.whl``. This helps tools identify
 the wheel's compatibility without extracting it, which is useful in network

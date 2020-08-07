@@ -14,6 +14,7 @@ package from the ground up. Because Python packages are not hard, I promise!
 
    packaging
    distribution
+   pep517
 
 
 ==================

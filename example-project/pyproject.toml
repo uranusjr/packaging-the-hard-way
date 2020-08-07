@@ -1,0 +1,4 @@
+[build-system]
+requires = []
+backend-path = [""]
+build-backend = "packager.pep517"
