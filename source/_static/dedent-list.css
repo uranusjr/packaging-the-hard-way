@@ -1,0 +1,6 @@
+ul > li > dl {
+  margin-bottom: 0.25rem;
+}
+ul > li > dl > dd {
+  margin-left: -1rem;
+}
