@@ -28,11 +28,12 @@ A `PEP 517`_ backend must implement two Python functions:
 Build a wheel
 =============
 
-We'll leave the second one for now since we just want to build wheels.
+The ``build_wheel`` hook can be implemented to, well, build wheels.
 
 .. literalinclude:: /../example-project/packager/pep517.py
     :caption: packager/pep517.py
     :language: python
+    :lines: 2-44
 
 Next, we need to tell pip where our backend is. This is done with `PEP 518`_,
 which introduces the configuration file ``pyproject.toml``, and a TOML table
@@ -85,4 +86,64 @@ Or we can let pip build and install the wheel in one shot::
 Build a source distribution
 ===========================
 
+A source distribution, a.k.a. *sdist*, is an archive to destribute the source
+code with some simple descriptive metadata. It is most commonly used by
+packages that require binary compilation to support unknown platforms, and is
+also useful for auditing purposes.
 
+When pip receives an sdist, it first extract the source code, and builds a
+wheel from it to install. [#sdist-wheel]_ The relation can be drawn like this:
+
+.. code-block:: none
+
+              extract
+      +-----------------------+
+      |                       v
+    +-------+  build_sdist  +--------------+
+    | sdist | <------------ | source code  |
+    +-------+               +--------------+
+                              |
+                              | build_wheel
+                              v
+                            +--------------+
+                            |    wheel     |
+                            +--------------+
+                              |
+                              | install
+                              v
+                            +--------------+
+                            | installation |
+                            +--------------+
+
+.. [#sdist-wheel] There are historical fallbacks to this, but let's avoid
+    the details here. The sdist-wheel relation is true in modern contexts.
+
+Since sdists need to be built to make sense anyway, their content is much less
+rigid than wheels'. The only constraint is basically to always use a gzipped
+POSIX.1-2001 pax tar with UTF-8 paths.
+
+.. literalinclude:: /../example-project/packager/pep517.py
+    :caption: packager/pep517.py
+    :language: python
+    :lines: 1,45-
+
+Not much we haven't seen here. This is very similar to how we built wheels,
+with only slight differences:
+
+* We use `tarfile` instead of `zipfile` to create a gzipped pax tar.
+* We need to bundle both ``pyproject.toml`` and the ``packager`` directory
+  along, so the sdist can build itself later.
+
+pip does not know how to buld an sdist because it's a package installer, and
+the installation process never needs to call ``build_sdist``, as shown in the
+above graph. But we use the ``build`` frontend instead::
+
+    $ py -m pip install build
+    $ py -m build ./example-project --sdist --output .
+
+.. note::
+
+    The ``build`` tool is still in early development and experiemental. Feel
+    free to report problems to `FFY00/python-build`_.
+
+.. _`FFY00/python-build`: https://github.com/FFY00/python-build

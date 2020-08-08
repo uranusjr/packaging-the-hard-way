@@ -57,20 +57,9 @@ def main(argv=None):
     options.output.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as td:
         td_path = pathlib.Path(td)
-        dist_info = create_dist_info(
-            _NAME,
-            _VERSION,
-            _TAG,
-            _PACKAGE,
-            td_path,
-        )
+        dist_info = create_dist_info(_NAME, _VERSION, _TAG, _PACKAGE, td_path)
         create_wheel(
-            _NAME,
-            _VERSION,
-            _TAG,
-            _PACKAGE,
-            dist_info,
-            options.output,
+            _NAME, _VERSION, _TAG, _PACKAGE, dist_info, options.output,
         )
 
 
