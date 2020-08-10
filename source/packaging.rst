@@ -63,11 +63,9 @@ Use ``my_package`` in another project
     other-project/
         main.py
 
-.. code-block:: py
+.. literalinclude:: /../other-project/main.py
     :caption: main.py
-
-    import my_package
-    my_package.hello()
+    :language: python
 
 Now try running ``main.py``::
 

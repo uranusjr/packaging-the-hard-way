@@ -23,11 +23,13 @@ Now we can build our wheel by calling
 
 .. code-block:: console
 
-    $ py -m packager.wheel ./my_package /path/to/save/the/wheel
+    $ cd /path/to/example-project
+    $ py -m packager.wheel ./my_package /path/to/save/wheel
 
 And use pip to install the wheel::
 
-    $ py -m pip install /path/to/save/the/wheel/my_package-1-py3-none-any.whl
+    $ cd /path/to/save/wheel
+    $ py -m pip install ./my_package-1-py3-none-any.whl
 
 which can be correctly recognised (notice the version changed from 0 to 1)::
 
@@ -60,7 +62,7 @@ components copied by our script in the previous section: *code*, and
   pip automatically writes the ``INSTALLER`` value in the installed
   ``.dist-info`` directory when it installs.
 
-There is a new file ``WHEEL`` that contains metadata that describes the 
+There is a new file ``WHEEL`` that contains metadata that describes the
 currently used wheel format itself. We're not getting into this too deep
 here since "real" distribution tools handle these automatically for you. Read
 the PEP for more information if you're into these stuff.

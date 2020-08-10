@@ -1,5 +1,4 @@
 build/
-other-project/
 __pycache__/
 
 *.pyc

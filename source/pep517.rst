@@ -54,8 +54,8 @@ for this:
 
 Now we can let pip build the wheel for us::
 
-    $ pip wheel --no-deps ./example-project
-    Processing ./example-project
+    $ pip wheel --no-deps /path/to/example-project
+    Processing /path/to/example-project
       Getting requirements to build wheel ... done
         Preparing wheel metadata ... done
     Building wheels for collected packages: my-package
@@ -66,8 +66,8 @@ Now we can let pip build the wheel for us::
 
 Or we can let pip build and install the wheel in one shot::
 
-    $ pip install ./example-project
-    Processing ./example-project
+    $ pip install /path/to/example-project
+    Processing /path/to/example-project
       Getting requirements to build wheel ... done
         Preparing wheel metadata ... done
     Building wheels for collected packages: my-package
@@ -139,7 +139,7 @@ the installation process never needs to call ``build_sdist``, as shown in the
 above graph. But we use the ``build`` frontend instead::
 
     $ py -m pip install build
-    $ py -m build ./example-project --sdist --output .
+    $ py -m build /path/to/example-project --sdist --output /path/to/save/wheel
 
 .. note::
 
