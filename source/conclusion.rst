@@ -42,6 +42,32 @@ understand where the problems lie for Python packaging (and where *not*!) so
 we can all spend more focused time to improve them.
 
 
+Why do tools do what they do?
+=============================
+
+Case studies:
+
+* `setup.py`_
+* `setup.cfg`_
+* `[tool.flit]`_ in pyproject.toml (`example <flit-example_>`_)
+* `[tool.poetry]`_ in pyproject.toml (`example <poetry-example_>`_)
+
+.. _`setup.py`:
+    https://setuptools.readthedocs.io/en/latest/setuptools.html
+    #basic-use
+.. _`setup.cfg`:
+    https://setuptools.readthedocs.io/en/latest/setuptools.html
+    #configuring-setup-using-setup-cfg-files
+.. _`[tool.flit]`:
+    https://flit.readthedocs.io/en/latest/pyproject_toml.html
+.. _flit-example:
+    https://github.com/takluyver/flit/blob/master/pyproject.toml
+.. _`[tool.poetry]`:
+    https://python-poetry.org/docs/pyproject/
+.. _poetry-example:
+    https://github.com/python-poetry/poetry/blob/master/pyproject.toml
+
+
 Looking into the future
 =======================
 

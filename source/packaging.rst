@@ -79,8 +79,8 @@ Now try running ``main.py``::
 It does not work. This is expected, since ``my_package`` is not available
 anywhere in ``other-project`` and its empty virtual environment.
 
-**The "fix" can be simple: just copy the ``my_package`` directory into
-one of the directories in ``sys.path``.**
+The "fix" can be simple: just copy the ``my_package`` directory into
+one of the directories in ``sys.path``.
 
 Generally, third-party packages (i.e. packages that are not a part of the
 standard library, and does not belong specifically to a project) are copied
