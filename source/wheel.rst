@@ -2,10 +2,11 @@
 Turn Your Package into a Distribution
 =====================================
 
-What we came up with in ``direct-install.py`` is what package installers like
+What we came up with in ``distinfo.py`` is what package installers like
 pip does essentially, if you strip off all its bells and whistles. The
 difference is that, pip requires distributions to be a single-file archive,
-and structured in a certain way, so it knows exactly what to download and extract, and where to.
+and structured in a certain way, so it knows exactly what to download and
+extract, and where to.
 
 The modern format pip uses to install, called "wheels", is specified in
 `PEP 427`_. A wheel is a ZIP archive, and is unarchived into ``site-packages``
@@ -24,7 +25,7 @@ Now we can build our wheel by calling
 .. code-block:: console
 
     $ cd /path/to/example-project
-    $ py -m packager.wheel ./my_package /path/to/save/wheel
+    $ py -m packager.wheel /path/to/save/wheel
 
 And use pip to install the wheel::
 

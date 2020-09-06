@@ -14,7 +14,7 @@ def create_dist_info_dir(container, name, version):
 
 
 def write_metadata(dist_info, name, version):
-    m = email.message.EmailMessage()
+    m = email.message.EmailMessage()  # RFC 822.
     m["Metadata-Version"] = "2.1"
     m["Name"] = name
     m["Version"] = version
