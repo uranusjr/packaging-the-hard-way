@@ -79,8 +79,6 @@ the PEP for more information if you're into these stuff.
   for Python 2), indicating the major Python version, ABI, and platform
   information.
 
-# TODO: The `.dist-info` directory is placed last intentionally.
-
-The wheel named as ``{name}-{version}-{tag}.whl``. This helps tools identify
-the wheel's compatibility without extracting it, which is useful in network
-contexts.
+The wheel is named as ``{name}-{version}-{tag}.whl``. This helps tools
+identify the wheel's compatibility without extracting it, which is useful in
+network contexts.
