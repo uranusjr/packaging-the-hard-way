@@ -28,7 +28,7 @@ Let's write some code to automate the process.
 Now if we install our package with this script::
 
     $ cd /path/to/example-project
-    $ py -m packager.distinfo ./my_package /path/to/site-packages
+    $ py -m packager.distinfo /path/to/site-packages
 
 pip would magically recognise our package!
 

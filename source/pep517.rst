@@ -33,7 +33,7 @@ The ``build_wheel`` hook can be implemented to, well, build wheels.
 .. literalinclude:: /../example-project/packager/pep517.py
     :caption: packager/pep517.py
     :language: python
-    :lines: 2-44
+    :lines: 2-39
 
 Next, we need to tell pip where our backend is. This is done with `PEP 518`_,
 which introduces the configuration file ``pyproject.toml``, and a TOML table
@@ -125,7 +125,7 @@ POSIX.1-2001 pax tar with UTF-8 paths.
 .. literalinclude:: /../example-project/packager/pep517.py
     :caption: packager/pep517.py
     :language: python
-    :lines: 1,45-
+    :lines: 1,49-
 
 Not much we haven't seen here. This is very similar to how we built wheels,
 with only slight differences:

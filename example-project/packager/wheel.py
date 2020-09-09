@@ -15,7 +15,7 @@ from .distinfo import (
 def _write_wheel_metadata(dist_info, tag):
     m = email.message.EmailMessage()
     m["Wheel-Version"] = "1.0"
-    m["Generator"] = "home-grown-packager/wheel.py"
+    m["Generator"] = "packager/wheel.py"
     m["Root-Is-Purelib"] = "true"
     m["Tag"] = tag
     dist_info.joinpath("WHEEL").write_bytes(bytes(m))
