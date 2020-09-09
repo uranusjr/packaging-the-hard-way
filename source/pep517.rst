@@ -139,7 +139,7 @@ the installation process never needs to call ``build_sdist``, as shown in the
 above graph. But we use the ``build`` frontend instead::
 
     $ py -m pip install build
-    $ py -m build /path/to/example-project --sdist --output /path/to/save/wheel
+    $ py -m build /path/to/example-project --sdist --outdir /path/to/save/wheel
 
 .. note::
 
