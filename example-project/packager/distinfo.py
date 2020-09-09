@@ -74,7 +74,7 @@ def main(argv=None):
 
         for path, relative in iter_files((_PACKAGE, dist_info)):
             target = options.target.joinpath(relative)
-            target.parent.mkdir(parents=True, exists_ok=True)
+            target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(path.read_bytes())
 
 
