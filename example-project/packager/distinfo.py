@@ -23,8 +23,8 @@ def write_metadata(dist_info, name, version):
 
 def _record_row_from_path(path, relative):
     file_data = path.read_bytes()
-    file_hash = base64.urlsafe_b64encode(hashlib.md5(file_data).digest())
-    return [relative.as_posix(), str(len(file_data)), f"md5={file_hash}"]
+    file_hash = base64.urlsafe_b64encode(hashlib.sha256(file_data).digest()).decode().rstrip('=')
+    return [relative.as_posix(), f"sha256={file_hash}", str(len(file_data))]
 
 
 def iter_files(roots):
