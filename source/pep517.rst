@@ -125,7 +125,7 @@ POSIX.1-2001 pax tar with UTF-8 paths.
 .. literalinclude:: /../example-project/packager/pep517.py
     :caption: packager/pep517.py
     :language: python
-    :lines: 1,49-
+    :lines: 1,42-
 
 Not much we haven't seen here. This is very similar to how we built wheels,
 with only slight differences:
